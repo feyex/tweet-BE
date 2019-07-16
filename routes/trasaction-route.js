@@ -14,7 +14,7 @@ const transactionController = require ('../controllers/transaction');
   
     router.get('/transactions/:id', transactionController.getTransaction);
 
-    router.get('/transact/:userid', transactionController.checkidexist);
+    router.get('/transact/:user_id', transactionController.checkidexist);
   
     router.post('/transactions', transactionController.createTransaction);
   

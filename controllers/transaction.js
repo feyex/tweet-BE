@@ -89,7 +89,7 @@ module.exports.listTransactions=(req, res)=> {
       }
 
       module.exports.checkidexist = (req, res) => {
-       Transaction.findOne({ "user_id": req.params.user_id })
+       Transaction.find({ "user_id": req.params.user_id })
        .then(Transaction => res.json(Transaction))
        .catch(err => res.send(err));
    }

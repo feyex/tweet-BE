@@ -11,16 +11,16 @@ module.exports.createUser = (req, res) => {
 		email: req.body.email,
 		phoneNumber: req.body.phoneNumber,
 		password: req.body.password,
-		role: req.body.role
+		role: req.body.role,
+		referral: req.body.referral
 
 	});
 
 
 	user.save(function (err, resp) {
 		if (err) {
-			res.send(err)
+			res.status(201)
 			.json({
-				status: false,
 				message: 'something went wrong '
 			})
 		} else {
