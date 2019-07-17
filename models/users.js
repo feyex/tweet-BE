@@ -20,7 +20,7 @@ const userSchema = new Schema({
     collection: 'users'
 });
 
-userSchema.set('toJSON', { virtuals: true }); // ALLOWS FOR EASY DISPLAY OF DB VALUES
+
 
 // Events
 userSchema.pre('save', function (next) {
