@@ -69,7 +69,7 @@ module.exports.listTransactions=(req, res)=> {
       
         const id  = req.params.id;
         console.log(id);
-        Transaction.deleteOne({'id': id })
+        Transaction.deleteOne({'_id': id })
           .then(response =>{
             console.log('mm',id);
             if (response){

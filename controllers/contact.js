@@ -45,11 +45,24 @@ module.exports.updateContact=(req, res)=> {
 		}
 	
 module.exports.deleteContact=(req, res)=> {
-			const { id } = req.params;
-			Contact.deleteOne({ id })
-				.then(response => res.json(response))
-				.catch(err => res.send(err));
-		}
-	
+	const id  = req.params.id;
+	Contact.deleteOne({'_id': id })
+   .then(response =>{
+	 if (response){
+	   res.status(200)
+		 .json({
+		   status:true,message:"success"
+		 })
+	 }
+	 else{
+	   res.status(201)
+		 .json({
+		   status:false,message:"failed"
+		 })
+	 }
+   })
+   .catch(err => res.send(err))
+   
+}
 		
 	

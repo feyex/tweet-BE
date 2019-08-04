@@ -2,14 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const discosSchema = new Schema ({
-    amount : { type: Number, required: true},
-    name: {
-        type: String,
-        default: 'Abuja Disco'},
-    acronym: String,
+    disco: {
+        type: String, required: true},
     state: {
-        type: String,
-        default: 'Abuja'}
+        type: String, required: true},
     
 }, {
     timestamps: true
