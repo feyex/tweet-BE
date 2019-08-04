@@ -31,8 +31,7 @@ module.exports.createUser = (req, res) => {
 			})
 		}
 
-	})
-	.catch(err => res.send(err));
+	});
 }
 
 module.exports.listUsers = (req, res) => {
@@ -42,7 +41,7 @@ module.exports.listUsers = (req, res) => {
 				status: true,
 				message: (user)
 			}))
-		.catch(err => res.send(err));
+		.then(err => res.send(err));
 }
 
 module.exports.getUser = (req, res) => {
@@ -56,7 +55,7 @@ module.exports.getUser = (req, res) => {
 				status: true,
 				message: (user)
 			}))
-		.catch(err => res.send(err));
+		.then(err => res.send(err));
 }
 
 module.exports.updateUser = (req, res) => {
@@ -66,21 +65,20 @@ module.exports.updateUser = (req, res) => {
 				status: true,
 				message: (user)
 			}))
-		.catch(err => res.send(err));
+		.then(err => res.send(err));
 }
 
 module.exports.deleteUser = (req, res) => {
-	let id = req.params.id
-	User.deleteOne(id)
-	  .then(user=> {
-		res.status(200).json({
-		  status: true,
-		  msg: 'user deleted successfully'
-		})
-	  })
-	.catch(err => res.send(err));
-  }
-  
+	const { id } = req.params;
+	User.findByIdAndRemove({ id })
+		.then(user => res.status(200)
+			.json({
+				status: true,
+				message: 'user fetched',
+				user
+			}))
+		.then(err => res.send(err));
+}
 
 module.exports.login = (req, res) => {
 	const email = req.body.email;
@@ -119,7 +117,6 @@ module.exports.login = (req, res) => {
 					})
 			}
 		})
-		.catch(err => res.send(err));
 
 }
 
@@ -133,7 +130,7 @@ module.exports.updatepassword = (req, res) => {
 				status: true,
 				message:(user)
 			}))
-		.catch(err => res.send(err));
+		.then(err => res.send(err));
 }
 
 
@@ -171,7 +168,6 @@ module.exports.comparepassword = (req, res) => {
 				});
 			}
 		})
-		.catch(err => res.send(err));
 
 }
 
