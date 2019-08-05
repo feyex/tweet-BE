@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const transactionSchema = new Schema ({
-    user_id : {type: Schema.Types.ObjectId, ref: 'users', required:true},
+    user_id : {type: Schema.Types.ObjectId, ref: 'users'},
     bill: { type: String, required: true },
 	state: { type: String, required: true },
 	disco: { type: String, required: true },
