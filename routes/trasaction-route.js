@@ -10,7 +10,7 @@ const transactionController = require ('../controllers/transaction');
 
     router.get('/latesttransact', transactionController.getLatestTransaction);
   
-    router.get('/approved/userid', transactionController.getApprovedTransactions);
+    router.get('/approved/:', transactionController.getApprovedTransactions);
   
     router.get('/transactions/:id', transactionController.getTransaction);
 

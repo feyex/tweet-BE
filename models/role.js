@@ -7,8 +7,8 @@ const roleSchema = new Schema({
     role:{ 
         type: String, 
         required: true,
-        enum: ['user', 'admin','disco','maximpact'],
-        default: 'user', }
+        unique:true
+        }
    
 }, {
     timestamps: true,

@@ -8,6 +8,8 @@ const roleController = require ('../controllers/role');
     router.get('/roles', roleController.listRole);
   
     router.get('/roles/:id', roleController.getRole);
+
+    router.get('/', roleController.seedRole);
   
     router.post('/roles', roleController.createRole);
   

@@ -4,34 +4,22 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 module.exports.createUser = (req, res) => {
-	var user = new User({
-		//need to add user details
-		firstname: req.body.firstname,
-		lastname: req.body.lastname,
-		email: req.body.email,
-		phoneNumber: req.body.phoneNumber,
-		password: req.body.password,
-		role: req.body.role,
-		referral: req.body.referral
+	var user = new User(
+		
+		req.body
 
-	});
+	);
 
-
-	user.save(function (err, resp) {
-		if (err) {
-			res.status(201)
-			.json({
-				message: 'something went wrong '
-			})
-		} else {
-			res.status(200)
+	user.save()
+		.then(() => res.status(200)
 			.json({
 				status: true,
-				message: 'user saved successful'
-			})
-		}
-
-	});
+				message: 'user saved successfully'
+			}))
+		.catch(err => res.send({
+			message: 'something went wrong ',
+			err: err
+		}));
 }
 
 module.exports.listUsers = (req, res) => {
@@ -95,7 +83,10 @@ module.exports.login = (req, res) => {
 				bcrypt.compare(password, user.password)
 					.then(result => {
 						if (result) {
-							const token = jwt.sign({ sub: user.id, role:user.role }, config.secret);
+							const token = jwt.sign({ sub: user.id, role:user.role }, config.secret,
+								{
+									expiresIn: 3600 // expires soon
+								});
 							const id = user._id;
 							const role = user.role;
 

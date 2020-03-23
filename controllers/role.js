@@ -64,4 +64,28 @@ module.exports.deleteRole=(req, res)=> {
 	  .catch(err => res.send(err))
       
   }
+
+  /**
+ * Seed the database
+ */
+module.exports.seedRole = (req, res) => {
+	// create some events
+	const role = [
+	  { role: 'user' },
+	  { role: 'admin' },
+	  { role: 'disco' },
+	  {role: 'maximpact'}
+	];
+  
+	// use the Event model to insert/save
+	Role.deleteOne({}, () => {
+	  for (roles of role) {
+		var newRole = new Role(role);
+		newRole.save();
+	  }
+	});
+  
+	// seeded!
+	res.send('Database seeded!');
+  }
 	

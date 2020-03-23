@@ -46,7 +46,7 @@ module.exports.listTransactions=(req, res)=> {
       }
     
     module.exports.getApprovedTransactions=(req, res)=> {
-        Transaction.find({ user_id: req.body.user_id })
+        Transaction.find( req.body )
           .then(approvedApps => res.json(approvedApps))
           .catch(err => res.send(err));
       }
