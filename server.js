@@ -13,13 +13,9 @@ config = require('./DB');
 require('./models/users');
  
 //controllers for models
-const rtsIndex = require('./routes/index');
-const contactRoute = require('./routes/contact-route');
-const electricityRoute = require('./routes/electricity-route');
-const paymentRoute = require('./routes/payment-route');
-const transactionRoute = require('./routes/trasaction-route');
-const discoRoute = require('./routes/disco-route');
-const roleRoute = require('./routes/role-route');
+// const rtsIndex = require('./routes/index');
+const tweetRoute = require('./routes/tweets-route');
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -34,13 +30,8 @@ app.use(cors());
 
 
 // api routes
-app.use('/contact', contactRoute);
-app.use('/api', rtsIndex);
-app.use('', electricityRoute);
-app.use('/payment', paymentRoute);
-app.use('/transaction', transactionRoute);
-app.use('/disco', discoRoute);
-app.use('/role', roleRoute);
+app.use('/tweet', tweetRoute);
+// app.use('/api', rtsIndex);
 
 // global error handler
 app.use(errorHandler);

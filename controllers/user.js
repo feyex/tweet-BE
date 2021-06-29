@@ -2,6 +2,7 @@ const User = require('../models/users');
 const config = require('../config/config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const coupon = require('../models/coupon');
 
 module.exports.createUser = (req, res) => {
 	var user = new User(
@@ -9,17 +10,29 @@ module.exports.createUser = (req, res) => {
 		req.body
 
 	);
+	const couponCodes = req.body.couponcode;
+	coupon.findOne({'code':couponCodes})
+		.then(async (coupons) =>{
+			if(!coupons){
+				return res.status(200).send({
+					message:'Coupon code does not exist'
+				})
+			}
+			else{
+				user.save()
+				.then(() => res.status(200)
+					.json({
+						status: true,
+						message: 'user saved successfully'
+					}))
+				.catch(err => res.send({
+					message: 'something went wrong ',
+					err: err
+				}));
+			}
+		})
 
-	user.save()
-		.then(() => res.status(200)
-			.json({
-				status: true,
-				message: 'user saved successfully'
-			}))
-		.catch(err => res.send({
-			message: 'something went wrong ',
-			err: err
-		}));
+	
 }
 
 module.exports.listUsers = (req, res) => {
@@ -70,9 +83,10 @@ module.exports.deleteUser = (req, res) => {
 
 module.exports.login = (req, res) => {
 	const email = req.body.email;
-
+console.log('e,mm',email);
 	User.findOne({ 'email': email })
 		.then(async (user) => {
+			console.log(user,'user')
 			if (!user) {
 				return res.status(200).send({
 					message: 'email does not exist'
@@ -164,9 +178,7 @@ module.exports.comparepassword = (req, res) => {
 
 module.exports.getRole=(req, res) =>{
     User.find({ $or: [
-		{'role': 'admin'},
-		{'role': 'disco'},
-		{'role': 'maximpact'}
+		{'role': 'admin'}
 	  ]})
       .then(approvedApps => res.json(approvedApps))
       .catch(err => res.send(err));

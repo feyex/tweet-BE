@@ -11,8 +11,9 @@ const userSchema = new Schema({
         type: String, 
         required: true,
          },
-    phoneNumber: { type: Number},
-    password:{ type: String, required: true}
+    phonenumber: { type: Number},
+    password:{ type: String, required: true},
+    couponcode: {type: String, required: true}
 
 }, {
     timestamps: true,
