@@ -4,8 +4,6 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// const jwt = require('./helpers/jwt');
-const errorHandler = require('./helpers/error-handler');
 
 //use mongoose library to set up the database connection with MongoDB. We can also use Mongoose to save the data in the database using Mongoose ORM.
 const mongoose = require('mongoose'), 
@@ -33,8 +31,6 @@ app.use(cors());
 app.use('/tweet', tweetRoute);
 // app.use('/api', rtsIndex);
 
-// global error handler
-app.use(errorHandler);
 
 // start server
 const port = process.env.PORT || 4000;
