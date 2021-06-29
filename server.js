@@ -8,10 +8,8 @@ const cors = require('cors');
 //use mongoose library to set up the database connection with MongoDB. We can also use Mongoose to save the data in the database using Mongoose ORM.
 const mongoose = require('mongoose'), 
 config = require('./DB');
-require('./models/users');
  
 //controllers for models
-// const rtsIndex = require('./routes/index');
 const tweetRoute = require('./routes/tweets-route');
 
 
