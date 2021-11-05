@@ -24,11 +24,11 @@ module.exports.createTweet=(req, res)=>{
 	}
 		
 module.exports.listTweet=(req, res)=>{
-			Tweet.find({})
+			Tweet.find({}).sort({_id: -1})
 			.then(Tweet => res.status(200)
 			.json({status:true,
 				message:(Tweet)}))
-			.then(err => res.send(err));
+			.catch(err => res.send(err));
 		}
 
 module.exports.getTweet=(req, res)=> {
