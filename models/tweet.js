@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const tweetSchema = new Schema ({
     message: { type: String, required: true},
-    source: { type: String}  
+    source: { type: String},
+    area: { type: String}    
 }, {
     timestamps: true
 });
