@@ -24,7 +24,7 @@ module.exports.createYoruba=(req, res)=>{
 	}
 		
 module.exports.listYoruba=(req, res)=>{
-			Yoruba.find({}).sort({_id: -1})
+			Yoruba.find({})
 			.then(Yoruba => res.status(200)
 			.json({status:true,
 				message:(Yoruba)}))
