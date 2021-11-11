@@ -11,6 +11,7 @@ config = require('./DB');
  
 //controllers for models
 const tweetRoute = require('./routes/tweets-route');
+const yorubaRoute = require('./routes/yoruba-route');
 
 
 mongoose.Promise = global.Promise;
@@ -27,8 +28,7 @@ app.use(cors());
 
 // api routes
 app.use('/tweet', tweetRoute);
-// app.use('/api', rtsIndex);
-
+app.use('/api', yorubaRoute);
 
 // start server
 const port = process.env.PORT || 4000;
