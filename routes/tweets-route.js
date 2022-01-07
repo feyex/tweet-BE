@@ -11,7 +11,14 @@ const tweetController = require ('../controllers/tweets');
   
     router.put('/tweets/:id', tweetController.updateTweet);
   
-    router.delete('/tweets/:id', tweetController.deleteTweet);
+    router.delete('/tweets/:id', tweetController.removeTweet);
+
+    router.post('/sentiment', tweetController.saveSentiment);
+
+    router.post('/calcSentiment', tweetController.calcSentiment);
+
+    router.get('/sentiment', tweetController.getSentiment);
+  
   
     module.exports = router;
   
