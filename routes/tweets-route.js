@@ -18,6 +18,8 @@ const tweetController = require ('../controllers/tweets');
     router.post('/calcSentiment', tweetController.calcSentiment);
 
     router.get('/sentiment', tweetController.getSentiment);
+
+    router.get('/sentiment/:id', tweetController.getSentimentById);
   
   
     module.exports = router;
