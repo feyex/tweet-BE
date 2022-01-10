@@ -84,6 +84,16 @@ module.exports.removeTweet = (req, res) => {
 }
 
 module.exports.saveSentiment = (req, res) => {
+	if (req.body.score = 4) {
+		req.body.polarity = 'Positive';
+	}
+	else if (req.body.score = 2) {
+		req.body.polarity = 'Negative';
+	}
+	else if (req.body.score = 1) {
+		req.body.polarity = 'Neutral';
+	}
+
 	let sentimentScore = new Sentiment(
 		req.body
 	)
@@ -127,7 +137,7 @@ module.exports.calculateSentiment = async (req, res) => {
 				let positive = this.getOccurrence(scores, 4);
 
 				maximum = Math.max(neutral, negative, positive);
-				if (neutral === negative || neutral === positive || negative === positive) {
+				if (neutral === negative || neutral === positive || negative === positive || positive === negative) {
 					sentimentScore = 0;
 					polarity = 'conflict'
 				}
@@ -145,6 +155,7 @@ module.exports.calculateSentiment = async (req, res) => {
 						polarity = 'positive';
 					}
 				}
+				console.log(negative, neutral, positive, maximum, 'llllllll')
 			}
 			else {
 				sentimentScore = result[0].score;
@@ -154,6 +165,7 @@ module.exports.calculateSentiment = async (req, res) => {
 				sentiment: sentimentScore,
 				polarity
 			}
+
 			Tweet.find({ _id: requests.id }, async function (err, tweetRes) {
 				tweetRes = tweetRes[0];
 
@@ -195,6 +207,7 @@ module.exports.getSentimentById = (req, res) => {
 	const { id } = req.params;
 	Sentiment.find({ 'tweetId': id })
 		.then(Tweet => {
+			console.log(Tweet, 'grtt')
 			res.json(Tweet)
 		})
 		.catch(err => res.send(err))

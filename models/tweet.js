@@ -5,7 +5,8 @@ const tweetSchema = new Schema ({
     message: { type: String, required: true},
     source: { type: String},
     area: { type: String},
-    sentiment: {type: Number}   
+    sentiment: {type: Number},
+    polarity: {type: String}     
 }, {
     timestamps: true
 });
