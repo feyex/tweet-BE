@@ -93,7 +93,7 @@ module.exports.saveSentiment = (req, res) => {
 	else if (req.body.score = 1) {
 		req.body.polarity = 'Neutral';
 	}
-
+	console.log(req.body, 'request')
 	let sentimentScore = new Sentiment(
 		req.body
 	)
@@ -173,6 +173,8 @@ module.exports.calculateSentiment = async (req, res) => {
 				tweetRes.polarity = requests.polarity;
 
 				await tweetRes.save(function (err, result) {
+					console.log(result, 'result')
+
 					if (err) {
 						console.error('ERROR!');
 						return 'error' + err
