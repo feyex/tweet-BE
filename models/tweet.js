@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const tweetSchema = new Schema ({
+    userId: {type: Schema.Types.ObjectId, ref: 'users', required:true},
     message: { type: String, required: true},
     source: { type: String},
     area: { type: String},
-    sentiment: {type: Number}   
+    sentiment: {type: Number},
+    url: { type: String},  
 }, {
     timestamps: true
 });

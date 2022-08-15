@@ -11,7 +11,7 @@ module.exports.createTweet=(req, res)=>{
 	  tweet.save(function(err, resp) {
 	  if (err) {
 		console.log(err);
-		res.send({
+		res.json({
 		message: 'something went wrong'
 		});
 	  } else {
@@ -22,6 +22,7 @@ module.exports.createTweet=(req, res)=>{
 	  }
 	
 	  });
+	  
 	}
 		
 module.exports.listTweet=(req, res)=>{
@@ -31,6 +32,14 @@ module.exports.listTweet=(req, res)=>{
 				message:(Tweet)}))
 			.catch(err => res.send(err));
 		}
+
+module.exports.listUserTweet=(req, res)=>{
+	Tweet.find({'userId': req}).sort({_id: -1})
+	.then(Tweet => res.status(200)
+	.json({status:true,
+		message:(Tweet)}))
+	.catch(err => res.send(err));
+}
 
 module.exports.getTweet=(req, res)=> {
 			const { id } = req.params;

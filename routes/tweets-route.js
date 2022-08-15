@@ -4,6 +4,8 @@ const router = express.Router();
 const tweetController = require ('../controllers/tweets');
 
     router.get('/tweets', tweetController.listTweet);
+
+    router.get('/user', tweetController.listUserTweet);
   
     router.get('/tweets/:id', tweetController.getTweet);
   
