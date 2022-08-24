@@ -33,7 +33,7 @@ app.use('/api', yorubaRoute);
 app.use('/v1', userRoute);
 
 // start server
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 const server = app.listen(port, function(){
  console.log('Listening on port ' + port);
