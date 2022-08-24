@@ -72,7 +72,8 @@ module.exports.seedRole = (req, res) => {
 	// create some events
 	const role = [
 	  { role: 'user' },
-	  { role: 'admin' }
+	  { role: 'admin' },
+	  { role: 'annotator' }
 	];
   
 	// use the Event model to insert/save

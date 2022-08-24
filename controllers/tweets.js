@@ -34,7 +34,7 @@ module.exports.listTweet=(req, res)=>{
 		}
 
 module.exports.listUserTweet=(req, res)=>{
-	Tweet.find({'userId': req}).sort({_id: -1})
+	Tweet.find({'userId': req.params.id}).sort({_id: -1})
 	.then(Tweet => res.status(200)
 	.json({status:true,
 		message:(Tweet)}))
